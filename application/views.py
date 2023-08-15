@@ -9,7 +9,7 @@ class ProductCreateAPIView(generics.ListCreateAPIView):
 
 product_list_create_view=ProductCreateAPIView.as_view()
 
-# Create your views here.
+
 class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset=Products.objects.all()
     serializer_class = ProductSerializer
