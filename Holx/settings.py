@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'application',
     'rest_framework',
     'channels',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +79,13 @@ ASGI_APPLICATION = 'Holx.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dhkv5hazp',
+    'API_KEY': '635657828916684',
+    'API_SECRET': 'QCuzVrENzC7KHPJsc25I7tqO_4Y',
+}
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DATABASES = {
     'default': {
