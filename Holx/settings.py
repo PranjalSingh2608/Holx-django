@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'application',
     'rest_framework',
+    'rest_framework.authtoken',
+    'authentication',
     'channels',
     'cloudinary',
     'cloudinary_storage',
@@ -140,3 +142,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.AllowAny',
+    ],
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE":10
+}
