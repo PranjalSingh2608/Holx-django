@@ -12,8 +12,8 @@ from rest_framework.response import Response
 class ProductCreateAPIView(generics.ListCreateAPIView):
     queryset=Products.objects.all()
     serializer_class=ProductSerializer
-    permission_classes=[IsAuthenticated]
-    authentication_classes=[TokenAuthentication]
+    # permission_classes=[IsAuthenticated]
+    # authentication_classes=[TokenAuthentication]
 
 product_list_create_view=ProductCreateAPIView.as_view()
 
