@@ -11,5 +11,6 @@ class Products(models.Model):
     description=models.CharField(default="",max_length=1000)
     image=models.CharField("images",null=True,blank=True,max_length=1000)
     phone=models.CharField(default="",max_length=20)
+    price=models.CharField(default="",max_length=20)
     def __str__(self):
         return self.name
