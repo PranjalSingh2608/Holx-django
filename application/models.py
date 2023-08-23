@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class Products(models.Model):
-    user=models.ForeignKey(User,default=1,null=
+    user=models.ForeignKey(User,null=
                            True,on_delete=models.SET_NULL)
     name=models.CharField(default="",max_length=100)
     address=models.CharField(default="",max_length=200)
