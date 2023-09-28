@@ -11,7 +11,7 @@ class ChatListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(sender=self.request.user)
 
-    @action(detail=False, methods=['GET'])
+    @action(methods=['GET'])
     def chat_history(self, request):
         sender_id = request.query_params.get('sender_id')
         receiver_id = request.query_params.get('receiver_id')
