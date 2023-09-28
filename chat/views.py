@@ -6,7 +6,7 @@ from .serializers import ChatSerializer
 class ChatListCreateView(generics.ListCreateAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         sender_id = self.request.user.id
@@ -28,7 +28,7 @@ class ChatListCreateView(generics.ListCreateAPIView):
 
 class ChatMessageListView(generics.ListAPIView):
     serializer_class = ChatSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         sender_id = self.request.query_params.get('sender_id')
