@@ -12,3 +12,11 @@ class Chat(models.Model):
 
     def __str__(self):
         return f"{self.sender.username} to {self.receiver.username}"
+
+class ChatRoom(models.Model):
+    product = models.ForeignKey(Products, on_delete=models.CASCADE,default='23')
+    members = models.ManyToManyField(User,default='5')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Chat Room for {self.product.name}"
