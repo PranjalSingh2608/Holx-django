@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status,filters
 
 from application.models import Products
 from .models import Chat
@@ -24,9 +24,12 @@ class ChatListCreateView(generics.ListCreateAPIView):
 class ChatListView(generics.ListAPIView):
     serializer_class=ChatSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [filters.OrderingFilter]
 
     def get_queryset(self):
         product_id=self.kwargs['product_id']
-        return Chat.objects.filter(product_id=product_id)
+        sender_id = self.kwargs['sender_id']
+        receiver_id = self.kwargs['receiver_id']
+        return Chat.objects.filter(product_id=product_id,sender_id=sender_id, receiver_id=receiver_id)
 
 
