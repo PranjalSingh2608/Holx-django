@@ -5,11 +5,13 @@ from application.models import Products
 from .models import Chat
 from rest_framework.response import Response
 from .serializers import ChatSerializer
+from  rest_framework.authentication import TokenAuthentication
 
 class ChatListCreateView(generics.ListCreateAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes=[TokenAuthentication]
 
     def perform_create(self, serializer):
         sender_id = self.request.user.id
@@ -24,6 +26,7 @@ class ChatListCreateView(generics.ListCreateAPIView):
 class ChatListView(generics.ListAPIView):
     serializer_class=ChatSerializer
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes=[TokenAuthentication]
     filter_backends = [filters.OrderingFilter]
 
     def get_queryset(self):
