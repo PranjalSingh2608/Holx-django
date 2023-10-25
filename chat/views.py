@@ -9,7 +9,7 @@ from .serializers import ChatSerializer
 class ChatListCreateView(generics.ListCreateAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         sender_id = self.request.user.id
@@ -23,7 +23,7 @@ class ChatListCreateView(generics.ListCreateAPIView):
 
 class ChatListView(generics.ListAPIView):
     serializer_class=ChatSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [filters.OrderingFilter]
 
     def get_queryset(self):
