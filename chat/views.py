@@ -13,14 +13,14 @@ class ChatListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes=[TokenAuthentication]
 
-    def perform_create(self, serializer):
-        sender_id = self.request.user.id
-        receiver_id = self.request.data.get('receiver_id')
+    # def perform_create(self, serializer):
+    #     sender_id = self.request.user.id
+    #     receiver_id = self.request.data.get('receiver_id')
         
-        if receiver_id:
-            serializer.save(sender_id=sender_id, receiver_id=receiver_id)
-        else:
-            return Response({"receiver_id": ["This field is required."]}, status=status.HTTP_400_BAD_REQUEST)
+    #     if receiver_id:
+    #         serializer.save(sender_id=sender_id, receiver_id=receiver_id)
+    #     else:
+    #         return Response({"receiver_id": ["This field is required."]}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ChatListView(generics.ListAPIView):
