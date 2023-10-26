@@ -21,7 +21,8 @@ class RegisterView(APIView):
                     'message':serializer.errors
                 }
             )
-        serializer.save()
+        instance=serializer.save()
+        print(instance)
         return Response({'message':'User account created'})
     
 
