@@ -45,7 +45,8 @@ class LoginView(APIView):
                 'message': 'invalid credentials'
             })
         
-        token = Token.objects.get_or_create(user=user)
-        token.save()
+        token, created = Token.objects.get_or_create(user=user)
+        if created:
+            token.save()
 
         return Response({'message':"user login" , 'token':str(token)})
