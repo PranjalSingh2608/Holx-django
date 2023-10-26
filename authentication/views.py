@@ -46,6 +46,6 @@ class LoginView(APIView):
             })
         
         token = Token.objects.get_or_create(user=user)
-
+        token.save()
 
         return Response({'message':"user login" , 'token':str(token)})
