@@ -38,8 +38,8 @@ class ChatListView(generics.ListAPIView):
 
 
 
-@api_view(['GET'])
 def fetch_chat_messages_by_receiver_id(request, receiver_id):
-    chat_messages = Chat.objects.filter(receiver=receiver_id)
-    serializer = ChatSerializer(chat_messages, many=True)
-    return Response(serializer.data)
+    if request.method == 'GET':
+        chat_messages = ChatMessage.objects.filter(receiver=receiver_id)
+        serializer = ChatMessageSerializer(chat_messages, many=True)
+        return JsonResponse(serializer.data, safe=False)
