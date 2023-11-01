@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, status,filters
-
+from rest_framework.decorators import api_view
 from application.models import Products
 from .models import Chat
 from rest_framework.response import Response
@@ -38,16 +38,8 @@ class ChatListView(generics.ListAPIView):
 
 
 
-def fetch_chat_by_receiver_id(request, receiver_id):
+@api_view(['GET'])
+def fetch_chat_messages_by_receiver_id(request, receiver_id):
     chat_messages = Chat.objects.filter(receiver=receiver_id)
-
-    serialized_chat_messages = [
-        {
-            'id': message.id,
-            'sender': message.sender,
-            'message': message.message,
-            'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  
-        }
-        for message in chat_messages
-    ]
-    return JsonResponse({'chat_messages': serialized_chat_messages})
+    serializer = ChatSerializer(chat_messages, many=True)
+    return Response(serializer.data)
