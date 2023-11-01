@@ -49,11 +49,11 @@ def fetch_chat_messages_by_receiver_id(request, receiver_id):
             product_id = message.product
             chat_key = f"{sender_id}-{product_id}"
 
-        if chat_key not in chat_dict:
-            chat_dict[chat_key] = True
-            active_chats.append({
-                "sender_id": sender_id,
-                "product_id": product_id
-            })
+            if chat_key not in chat_dict:
+                chat_dict[chat_key] = True
+                active_chats.append({
+                    "sender_id": sender_id,
+                    "product_id": product_id
+                })
 
         return JsonResponse(active_chats, safe=False)
