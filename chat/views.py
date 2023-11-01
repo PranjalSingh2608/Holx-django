@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, permissions, status,filters
 
@@ -36,3 +37,17 @@ class ChatListView(generics.ListAPIView):
         return Chat.objects.filter(product_id=product_id,sender_id=sender_id, receiver_id=receiver_id)
 
 
+
+def fetch_chat_by_receiver_id(request, receiver_id):
+    chat_messages = Chat.objects.filter(receiver=receiver_id)
+
+    serialized_chat_messages = [
+        {
+            'id': message.id,
+            'sender': message.sender,
+            'message': message.message,
+            'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S'),  
+        }
+        for message in chat_messages
+    ]
+    return JsonResponse({'chat_messages': serialized_chat_messages})
