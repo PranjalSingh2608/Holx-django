@@ -41,5 +41,19 @@ class ChatListView(generics.ListAPIView):
 def fetch_chat_messages_by_receiver_id(request, receiver_id):
     if request.method == 'GET':
         chat_messages = Chat.objects.filter(receiver=receiver_id)
-        serializer = ChatSerializer(chat_messages, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        active_chats = []
+        chat_dict = {}
+
+        for message in chat_messages:
+            sender_id = message.sender
+            product_id = message.product
+            chat_key = f"{sender_id}-{product_id}"
+
+        if chat_key not in chat_dict:
+            chat_dict[chat_key] = True
+            active_chats.append({
+                "sender_id": sender_id,
+                "product_id": product_id
+            })
+
+        return JsonResponse(active_chats, safe=False)
