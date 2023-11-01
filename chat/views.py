@@ -45,8 +45,8 @@ def fetch_chat_messages_by_receiver_id(request, receiver_id):
         chat_dict = {}
 
         for message in chat_messages:
-            sender_id = message.sender
-            product_id = message.product
+            sender_id = message.sender.id
+            product_id = message.product.id
             chat_key = f"{sender_id}-{product_id}"
 
             if chat_key not in chat_dict:
