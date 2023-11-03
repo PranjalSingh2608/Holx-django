@@ -50,4 +50,5 @@ class LoginView(APIView):
         if created:
             token.save()
 
-        return Response({'message':"user login" , 'token':str(token)})
+        return Response({'message':"user login" , 'token':str(token),'user_id': user.id,
+            'username': user.username,})
