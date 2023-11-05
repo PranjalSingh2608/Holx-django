@@ -46,11 +46,11 @@ product_alter_view=ProductRetrieveUpdateDestroyAPIView.as_view()
 
 
 class UserNameAPI(APIView):
-    def get(self, request, user_id):
-        user = User.objects.get(id=user_id)
+    def get(self, request, pk):
+        user = User.objects.get(id=pk)
         return Response({'username': user.username})
 
 class ProductNameAPI(APIView):
-    def get(self, request, product_id):
-        product = Products.objects.get(id=product_id)
+    def get(self, request, pk):
+        product = Products.objects.get(id=pk)
         return Response({'product_name': product.name})
