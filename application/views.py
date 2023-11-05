@@ -16,7 +16,8 @@ class ProductCreateAPIView(generics.ListCreateAPIView):
     permission_classes=[IsAuthenticated]
     authentication_classes=[TokenAuthentication]
     def get_queryset(self):
-        return Products.objects.all()
+        user=self.request.user
+        return Products.objects.exclude(created_by=user)
     
     def perform_create(self,serializer):
         serializer.save(user=self.request.user)
