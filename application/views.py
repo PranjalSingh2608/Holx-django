@@ -8,6 +8,7 @@ from .permissions import IsOwnerOrReadOnly
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 class ProductCreateAPIView(generics.ListCreateAPIView):
     queryset=Products.objects.all()
@@ -42,3 +43,13 @@ class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 
 product_alter_view=ProductRetrieveUpdateDestroyAPIView.as_view()    
 
+
+class UserNameAPI(APIView):
+    def get(self, request, user_id):
+        user = User.objects.get(id=user_id)
+        return Response({'username': user.username})
+
+class ProductNameAPI(APIView):
+    def get(self, request, product_id):
+        product = Products.objects.get(id=product_id)
+        return Response({'product_name': product.name})
