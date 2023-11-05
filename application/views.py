@@ -17,7 +17,7 @@ class ProductCreateAPIView(generics.ListCreateAPIView):
     authentication_classes=[TokenAuthentication]
     def get_queryset(self):
         user=self.request.user
-        return Products.objects.exclude(created_by=user)
+        return Products.objects.exclude(user=user)
     
     def perform_create(self,serializer):
         serializer.save(user=self.request.user)
