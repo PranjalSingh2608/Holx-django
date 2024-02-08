@@ -94,14 +94,17 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'Natblida@2608',
+        'HOST': 'localhost',  
+        'PORT': '5432',          
     }
 }
 
 
 
-DATABASES['default']=dj_database_url.parse("postgres://holxdb_user:72VwqxMTpa1dZHHo9EWM9LmD2h4HrcGR@dpg-cktk3pdk4k9c73atj23g-a.singapore-postgres.render.com/holxdb")
 
 CHANNEL_LAYERS = {
     "default": {
