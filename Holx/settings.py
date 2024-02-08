@@ -96,14 +96,13 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD':os.environ.get('PASSWORD'),
-        'HOST': os.environ.get('HOST'),  
-        'PORT': os.environ.get('PORT'),          
+        'NAME': 'postgres',
+        'USER': 'postgres.wogzrutijkapascxlgjh',
+        'PASSWORD':'Hash@2608hash',
+        'HOST': 'aws-0-ap-south-1.pooler.supabase.com',  
+        'PORT': '5432',          
     }
 }
-
 
 
 
